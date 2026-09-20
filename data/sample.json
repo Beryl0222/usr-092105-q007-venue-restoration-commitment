@@ -1,0 +1,9 @@
+{
+  "event_id": "evt-092105-007-0001",
+  "event_type": "BASELINE_FROZEN",
+  "aggregate_type": "venue_baseline",
+  "aggregate_id": "venue-restoration-commitment-001",
+  "occurred_at": "2026-09-20T12:00:00+08:00",
+  "version": 1,
+  "summary": "登记赛后场馆恢复承诺的首条领域记录"
+}
