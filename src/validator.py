@@ -1,10 +1,19 @@
-"""校验领域事件信封的公共字段。"""
+"""事件信封校验的兼容入口。
 
-REQUIRED = ("event_id", "event_type", "aggregate_type", "aggregate_id", "occurred_at", "version", "summary")
+实现已随领域扩展迁移至 src.domain，此处保留原导入路径，
+既有接入方 `from src.validator import validate_event` 无需修改。
+"""
 
-def validate_event(record: dict) -> list[str]:
-    """返回可以直接展示给接入方的中文错误。"""
-    errors = [f"缺少字段：{name}" for name in REQUIRED if name not in record]
-    if "version" in record and (not isinstance(record["version"], int) or record["version"] < 1):
-        errors.append("version 必须是正整数")
-    return errors
+from src.domain import validate_event
+
+REQUIRED = (
+    "event_id",
+    "event_type",
+    "aggregate_type",
+    "aggregate_id",
+    "occurred_at",
+    "version",
+    "summary",
+)
+
+__all__ = ["validate_event", "REQUIRED"]

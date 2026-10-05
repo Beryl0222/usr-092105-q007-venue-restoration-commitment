@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "赛后场馆恢复承诺领域事件",
-  "description": "用于跨模块交换事实记录的公共信封。",
+  "description": "用于跨模块交换事实记录的公共信封。事件目录覆盖从进场冻结到分区重开的赛后恢复全流程；撤场完成不等于分区开放，安全、功能、资产须分别验收。",
   "type": "object",
   "required": [
     "event_id",
@@ -16,19 +16,55 @@
     "event_id": {
       "type": "string",
       "minLength": 8,
-      "description": "事件唯一标识"
+      "description": "事件唯一标识，来源系统重试时必须沿用原标识"
     },
     "event_type": {
-      "type": "string",
-      "enum": [
-        "BASELINE_FROZEN",
-        "INSTALLATION_ACCEPTED",
-        "DAMAGE_REPORTED",
-        "ZONE_REPAIRED",
-        "ZONE_REOPENED"
-      ],
-      "description": "本领域事件类型"
+      "$ref": "#/$defs/event_type"
     },
+    "aggregate_type": {
+      "$ref": "#/$defs/aggregate_type"
+    },
+    "aggregate_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "业务对象标识"
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "事实真实发生时间，后补证据也不得改写"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "同一 aggregate_id 内从 1 开始严格递增"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 2,
+      "description": "中文事实摘要"
+    },
+    "zone_id": {
+      "type": "string",
+      "description": "分区标识。恢复、争议、隔离、重开均以分区为最小粒度，避免已恢复空间被连带关闭"
+    },
+    "venue_id": {
+      "type": "string",
+      "description": "场馆标识"
+    },
+    "details": {
+      "$ref": "#/$defs/details"
+    },
+    "refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "因果关联的 event_id，如重开引用三签署、改签引用重开决定、损伤引用赛前基线"
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
     "aggregate_type": {
       "type": "string",
       "enum": [
@@ -39,26 +75,277 @@
       ],
       "description": "业务对象类型"
     },
-    "aggregate_id": {
+    "event_type": {
       "type": "string",
-      "minLength": 1,
-      "description": "业务对象标识"
+      "enum": [
+        "BASELINE_FROZEN",
+        "BASELINE_AMENDED",
+        "INSTALLATION_REGISTERED",
+        "INSTALLATION_ACCEPTED",
+        "OCCUPANCY_WINDOW_CLOSED",
+        "INSPECTION_RECORDED",
+        "DAMAGE_REPORTED",
+        "DAMAGE_DISPUTED",
+        "ZONE_QUARANTINED",
+        "REPAIR_ORDER_OPENED",
+        "ZONE_REPAIRED",
+        "REPAIR_ORDER_CLOSED",
+        "COST_GUARANTEE_HELD",
+        "COST_GUARANTEE_SETTLED",
+        "ASSET_DONATION_OFFERED",
+        "ASSET_HANDOVER_SIGNED",
+        "SAFETY_SIGN_OFF",
+        "FUNCTION_SIGN_OFF",
+        "ASSET_SIGN_OFF",
+        "ZONE_REOPENED",
+        "COURSE_REBOOKED"
+      ],
+      "description": "本领域事件类型。x-event_catalog 见各事件与聚合的配对及关键 details 字段。"
     },
-    "occurred_at": {
-      "type": "string",
-      "format": "date-time",
-      "description": "事实发生时间"
-    },
-    "version": {
-      "type": "integer",
-      "minimum": 1,
-      "description": "对象版本"
-    },
-    "summary": {
-      "type": "string",
-      "minLength": 2,
-      "description": "中文事实摘要"
+    "details": {
+      "type": "object",
+      "description": "事件事实载荷。已知字段如下，允许接入方扩展字段；跨系统不变量由校验代码强制。",
+      "properties": {
+        "venue_id": { "type": "string" },
+        "zone_id": { "type": "string" },
+        "zone_name": { "type": "string" },
+        "responsible_party": {
+          "type": "string",
+          "description": "使用方/赛事运营商，责任与费用担保的指向对象"
+        },
+        "baseline_snapshot": {
+          "type": "object",
+          "description": "进场冻结时的区域基线：草坪承载、地板孔位、消防通道、无障碍设施等",
+          "properties": {
+            "turf_load_limit": { "type": "string" },
+            "floor_anchor_holes": { "type": "string" },
+            "fire_egress": { "type": "string" },
+            "accessibility": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "amend_reason": { "type": "string" },
+        "structure_name": { "type": "string" },
+        "permits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["permit_no", "permit_type"],
+            "properties": {
+              "permit_no": { "type": "string" },
+              "permit_type": { "type": "string" },
+              "valid_until": { "type": "string", "format": "date-time" }
+            },
+            "additionalProperties": true
+          }
+        },
+        "occupancy_window": {
+          "type": "object",
+          "properties": {
+            "start": { "type": "string", "format": "date-time" },
+            "end": { "type": "string", "format": "date-time" }
+          }
+        },
+        "cleared_at": { "type": "string", "format": "date-time" },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["media_ref", "record_type", "taken_at"],
+            "properties": {
+              "media_ref": { "type": "string" },
+              "record_type": {
+                "type": "string",
+                "enum": ["original", "supplementary"],
+                "description": "original=当场采集的原始证据；supplementary=后补材料，永远不能顶替 original"
+              },
+              "taken_at": { "type": "string", "format": "date-time" },
+              "captured_by": { "type": "string" },
+              "note": { "type": "string" }
+            },
+            "additionalProperties": true
+          }
+        },
+        "damage_id": { "type": "string" },
+        "aspect": {
+          "type": "string",
+          "enum": ["turf", "floor", "fire_egress", "accessibility", "other"],
+          "description": "受损维度：草坪承载/地板孔位/消防通道/无障碍设施/其他"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["minor", "major", "critical"]
+        },
+        "dispute_reason": { "type": "string" },
+        "quarantine_reason": { "type": "string" },
+        "repair_order_id": { "type": "string" },
+        "contractor": { "type": "string" },
+        "cost_estimate": { "type": "number" },
+        "repair_summary": { "type": "string" },
+        "guarantee_id": { "type": "string" },
+        "amount": { "type": "number" },
+        "currency": { "type": "string" },
+        "guarantee_status": {
+          "type": "string",
+          "enum": ["held", "released", "claimed", "partial_claim"]
+        },
+        "asset_id": { "type": "string" },
+        "asset_name": { "type": "string" },
+        "donor_party": { "type": "string" },
+        "ownership_status": {
+          "type": "string",
+          "enum": ["offered", "handover_signed", "accepted", "rejected"],
+          "description": "捐赠装置仅在 handover_signed 之后才允许计入场馆资产"
+        },
+        "sign_off_type": {
+          "type": "string",
+          "enum": ["safety", "function", "asset"]
+        },
+        "signed_by": { "type": "string" },
+        "signed_off": {
+          "type": "array",
+          "description": "重开决定所依据的已签署验收类型，须同时含 safety、function、asset",
+          "items": {
+            "type": "string",
+            "enum": ["safety", "function", "asset"]
+          }
+        },
+        "reopen_from": {
+          "type": "string",
+          "format": "date-time",
+          "description": "分区对外开放起始时间，对外日历只读取已签署重开事件"
+        },
+        "course_id": { "type": "string" },
+        "course_name": { "type": "string" },
+        "original_slot": {
+          "type": "object",
+          "properties": {
+            "start": { "type": "string", "format": "date-time" },
+            "end": { "type": "string", "format": "date-time" },
+            "zone_id": { "type": "string" }
+          }
+        },
+        "new_slot": {
+          "type": "object",
+          "properties": {
+            "start": { "type": "string", "format": "date-time" },
+            "end": { "type": "string", "format": "date-time" },
+            "zone_id": { "type": "string" }
+          }
+        },
+        "rebook_from_decision": {
+          "type": "string",
+          "description": "必须引用一条已签署的 ZONE_REOPENED 事件 event_id"
+        }
+      },
+      "additionalProperties": true
     }
   },
-  "additionalProperties": true
+  "x-event_catalog": [
+    {
+      "event_type": "BASELINE_FROZEN",
+      "aggregate_type": "venue_baseline",
+      "meaning": "进场冻结：记录各分区赛前基线（草坪承载、地板孔位、消防通道、无障碍设施），后续一切争议与验收的原点"
+    },
+    {
+      "event_type": "BASELINE_AMENDED",
+      "aggregate_type": "venue_baseline",
+      "meaning": "基线修订，须给出 amend_reason 且不得覆盖原始冻结记录"
+    },
+    {
+      "event_type": "INSTALLATION_REGISTERED",
+      "aggregate_type": "temporary_installation",
+      "meaning": "登记临时结构、许可与占用窗口、使用方"
+    },
+    {
+      "event_type": "INSTALLATION_ACCEPTED",
+      "aggregate_type": "temporary_installation",
+      "meaning": "临时结构进场核验通过（兼容既有事件名）"
+    },
+    {
+      "event_type": "OCCUPANCY_WINDOW_CLOSED",
+      "aggregate_type": "temporary_installation",
+      "meaning": "占用窗口关闭、撤场完成；只代表设施撤走，不代表分区可以开放"
+    },
+    {
+      "event_type": "INSPECTION_RECORDED",
+      "aggregate_type": "restoration_case",
+      "meaning": "巡检证据登记，区分 original 原始证据与 supplementary 后补材料"
+    },
+    {
+      "event_type": "DAMAGE_REPORTED",
+      "aggregate_type": "restoration_case",
+      "meaning": "登记损伤并对照赛前基线（兼容既有事件名）"
+    },
+    {
+      "event_type": "DAMAGE_DISPUTED",
+      "aggregate_type": "restoration_case",
+      "meaning": "使用方对损伤定责提出争议"
+    },
+    {
+      "event_type": "ZONE_QUARANTINED",
+      "aggregate_type": "restoration_case",
+      "meaning": "有争议的分区隔离，效力仅限该分区"
+    },
+    {
+      "event_type": "REPAIR_ORDER_OPENED",
+      "aggregate_type": "restoration_case",
+      "meaning": "开具修复工单"
+    },
+    {
+      "event_type": "ZONE_REPAIRED",
+      "aggregate_type": "restoration_case",
+      "meaning": "分区修复完成（兼容既有事件名），仍需分别验收"
+    },
+    {
+      "event_type": "REPAIR_ORDER_CLOSED",
+      "aggregate_type": "restoration_case",
+      "meaning": "工单关闭并归集实际修复费用"
+    },
+    {
+      "event_type": "COST_GUARANTEE_HELD",
+      "aggregate_type": "restoration_case",
+      "meaning": "就修复费用扣留担保/保函"
+    },
+    {
+      "event_type": "COST_GUARANTEE_SETTLED",
+      "aggregate_type": "restoration_case",
+      "meaning": "费用担保结算：赔付、部分赔付或释放"
+    },
+    {
+      "event_type": "ASSET_DONATION_OFFERED",
+      "aggregate_type": "restoration_case",
+      "meaning": "赞助装置约定留给场馆（捐赠要约）；未正式接收前不算场馆资产"
+    },
+    {
+      "event_type": "ASSET_HANDOVER_SIGNED",
+      "aggregate_type": "restoration_case",
+      "meaning": "资产交接书签署，装置自此才可计入场馆资产，也是资产验收的前提"
+    },
+    {
+      "event_type": "SAFETY_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "meaning": "安全验收签署（结构、消防通道等）"
+    },
+    {
+      "event_type": "FUNCTION_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "meaning": "功能验收签署（草坪承载、地板孔位、无障碍设施等功能恢复）"
+    },
+    {
+      "event_type": "ASSET_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "meaning": "资产验收签署（交接完成、无遗留资产争议）"
+    },
+    {
+      "event_type": "ZONE_REOPENED",
+      "aggregate_type": "reopening_decision",
+      "meaning": "分区重开：必须同时具备安全、功能、资产三类签署；对外日历只读取本事件"
+    },
+    {
+      "event_type": "COURSE_REBOOKED",
+      "aggregate_type": "reopening_decision",
+      "meaning": "社区课程改签，只能引用已签署的分区重开结果"
+    }
+  ]
 }

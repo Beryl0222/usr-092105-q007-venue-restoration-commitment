@@ -1,0 +1,771 @@
+{
+  "venue_id": "venue-east-sports-center",
+  "venue_name": "城东区体育中心",
+  "event_name": "2026 城市田径公开赛",
+  "operator": "峰汇赛事运营有限公司",
+  "description": "下周（10月6日起）社区课程名额已售出。赛事运营商仅报告撤场完成，草坪承载、地板孔位、消防通道与无障碍设施需对照赛前基线分区验收；赞助装置有留馆约定但尚未完成资产交接。",
+  "events": [
+    {
+      "event_id": "evt-base-z1-001",
+      "event_type": "BASELINE_FROZEN",
+      "aggregate_type": "venue_baseline",
+      "aggregate_id": "baseline-z1",
+      "occurred_at": "2026-09-20T09:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z1",
+      "summary": "进场冻结：主场草坪区赛前基线（草坪承载、锚固点、消防通道、无障碍通道）",
+      "details": {
+        "venue_id": "venue-east-sports-center",
+        "zone_name": "主场草坪区",
+        "baseline_snapshot": {
+          "turf_load_limit": "天然草坪允许静载 0.35MPa，无成片斑秃",
+          "floor_anchor_holes": "草坪区共 12 处地锚预留点，位置图编号 A01-A12",
+          "fire_egress": "北侧 4 条疏散通道净宽 4 米，无占用",
+          "accessibility": "草坪边缘无障碍观赛位 8 个，坡道完好"
+        }
+      }
+    },
+    {
+      "event_id": "evt-base-z2-001",
+      "event_type": "BASELINE_FROZEN",
+      "aggregate_type": "venue_baseline",
+      "aggregate_id": "baseline-z2",
+      "occurred_at": "2026-09-20T09:30:00+08:00",
+      "version": 1,
+      "zone_id": "Z2",
+      "summary": "进场冻结：综合训练馆赛前基线（运动地板孔位与无障碍设施）",
+      "details": {
+        "venue_id": "venue-east-sports-center",
+        "zone_name": "综合训练馆",
+        "baseline_snapshot": {
+          "turf_load_limit": "不适用（室内馆）",
+          "floor_anchor_holes": "运动地板无遗留孔洞，临时锚固须用 382 个标准孔位并在撤场时封孔",
+          "fire_egress": "东西两侧疏散门常开，通道净宽 3 米",
+          "accessibility": "无障碍更衣室 1 间、升降平台 1 部运行正常"
+        }
+      }
+    },
+    {
+      "event_id": "evt-base-z3-001",
+      "event_type": "BASELINE_FROZEN",
+      "aggregate_type": "venue_baseline",
+      "aggregate_id": "baseline-z3",
+      "occurred_at": "2026-09-20T10:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z3",
+      "summary": "进场冻结：南侧疏散通道及无障碍坡道区赛前基线",
+      "details": {
+        "venue_id": "venue-east-sports-center",
+        "zone_name": "南侧疏散通道及无障碍坡道区",
+        "baseline_snapshot": {
+          "turf_load_limit": "不适用",
+          "floor_anchor_holes": "硬化铺装无孔位",
+          "fire_egress": "南侧主疏散通道净宽 6 米，标识齐全",
+          "accessibility": "无障碍坡道坡度 1:12，扶手连续"
+        }
+      }
+    },
+    {
+      "event_id": "evt-base-z4-001",
+      "event_type": "BASELINE_FROZEN",
+      "aggregate_type": "venue_baseline",
+      "aggregate_id": "baseline-z4",
+      "occurred_at": "2026-09-20T10:30:00+08:00",
+      "version": 1,
+      "zone_id": "Z4",
+      "summary": "进场冻结：器材存放区赛前基线",
+      "details": {
+        "venue_id": "venue-east-sports-center",
+        "zone_name": "器材存放区",
+        "baseline_snapshot": {
+          "turf_load_limit": "不适用",
+          "floor_anchor_holes": "环氧地坪完好无孔",
+          "fire_egress": "存放区疏散指示正常",
+          "accessibility": "不适用"
+        }
+      }
+    },
+    {
+      "event_id": "evt-inst-z1-001",
+      "event_type": "INSTALLATION_REGISTERED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z1",
+      "occurred_at": "2026-09-21T10:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z1",
+      "summary": "登记主场草坪区临时主舞台及篷房、许可与占用窗口",
+      "details": {
+        "venue_id": "venue-east-sports-center",
+        "structure_name": "临时主舞台及观众篷房",
+        "responsible_party": "峰汇赛事运营有限公司",
+        "permits": [
+          {"permit_no": "临建许-2026-0311", "permit_type": "临时建（构）筑物", "valid_until": "2026-09-29T18:00:00+08:00"},
+          {"permit_no": "占道许-2026-0207", "permit_type": "场地占用", "valid_until": "2026-09-28T20:00:00+08:00"}
+        ],
+        "occupancy_window": {"start": "2026-09-21T10:00:00+08:00", "end": "2026-09-28T18:00:00+08:00"}
+      }
+    },
+    {
+      "event_id": "evt-inst-z2-001",
+      "event_type": "INSTALLATION_REGISTERED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z2",
+      "occurred_at": "2026-09-21T11:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z2",
+      "summary": "登记综合训练馆临时看台及地板锚固、许可与占用窗口",
+      "details": {
+        "venue_id": "venue-east-sports-center",
+        "structure_name": "临时观众看台（地面锚固）",
+        "responsible_party": "峰汇赛事运营有限公司",
+        "permits": [
+          {"permit_no": "临建许-2026-0312", "permit_type": "临时建（构）筑物", "valid_until": "2026-09-29T18:00:00+08:00"}
+        ],
+        "occupancy_window": {"start": "2026-09-21T11:00:00+08:00", "end": "2026-09-28T18:00:00+08:00"}
+      }
+    },
+    {
+      "event_id": "evt-inst-z3-001",
+      "event_type": "INSTALLATION_REGISTERED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z3",
+      "occurred_at": "2026-09-21T13:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z3",
+      "summary": "登记南侧通道临时安检篷房与导视牌、许可与占用窗口",
+      "details": {
+        "venue_id": "venue-east-sports-center",
+        "structure_name": "临时安检篷房及导视架",
+        "responsible_party": "峰汇赛事运营有限公司",
+        "permits": [
+          {"permit_no": "占道许-2026-0208", "permit_type": "通道占用", "valid_until": "2026-09-28T20:00:00+08:00"}
+        ],
+        "occupancy_window": {"start": "2026-09-21T13:00:00+08:00", "end": "2026-09-28T18:00:00+08:00"}
+      }
+    },
+    {
+      "event_id": "evt-inst-z4-001",
+      "event_type": "INSTALLATION_REGISTERED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z4",
+      "occurred_at": "2026-09-21T14:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z4",
+      "summary": "登记器材存放区赞助商互动装置、许可与占用窗口",
+      "details": {
+        "venue_id": "venue-east-sports-center",
+        "structure_name": "赞助商互动体验装置两套",
+        "responsible_party": "峰汇赛事运营有限公司",
+        "permits": [
+          {"permit_no": "临电许-2026-0455", "permit_type": "临时用电", "valid_until": "2026-09-29T18:00:00+08:00"}
+        ],
+        "occupancy_window": {"start": "2026-09-21T14:00:00+08:00", "end": "2026-09-28T18:00:00+08:00"}
+      }
+    },
+    {
+      "event_id": "evt-inst-z1-002",
+      "event_type": "INSTALLATION_ACCEPTED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z1",
+      "occurred_at": "2026-09-22T15:00:00+08:00",
+      "version": 2,
+      "zone_id": "Z1",
+      "summary": "主舞台及篷房进场核验通过"
+    },
+    {
+      "event_id": "evt-inst-z2-002",
+      "event_type": "INSTALLATION_ACCEPTED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z2",
+      "occurred_at": "2026-09-22T15:30:00+08:00",
+      "version": 2,
+      "zone_id": "Z2",
+      "summary": "临时看台进场核验通过"
+    },
+    {
+      "event_id": "evt-inst-z3-002",
+      "event_type": "INSTALLATION_ACCEPTED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z3",
+      "occurred_at": "2026-09-22T16:00:00+08:00",
+      "version": 2,
+      "zone_id": "Z3",
+      "summary": "安检篷房及导视架进场核验通过"
+    },
+    {
+      "event_id": "evt-inst-z4-002",
+      "event_type": "INSTALLATION_ACCEPTED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z4",
+      "occurred_at": "2026-09-22T16:30:00+08:00",
+      "version": 2,
+      "zone_id": "Z4",
+      "summary": "赞助商互动装置进场核验通过"
+    },
+    {
+      "event_id": "evt-inst-z3-003",
+      "event_type": "OCCUPANCY_WINDOW_CLOSED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z3",
+      "occurred_at": "2026-09-28T17:00:00+08:00",
+      "version": 3,
+      "zone_id": "Z3",
+      "summary": "南侧通道安检篷房撤场完成（仅代表设施撤走，开放须另行验收）",
+      "details": {"cleared_at": "2026-09-28T17:00:00+08:00"}
+    },
+    {
+      "event_id": "evt-inst-z4-003",
+      "event_type": "OCCUPANCY_WINDOW_CLOSED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z4",
+      "occurred_at": "2026-09-28T17:30:00+08:00",
+      "version": 3,
+      "zone_id": "Z4",
+      "summary": "存放区撤场：一套互动装置运走，另一套按赞助约定留在现场但未交接",
+      "details": {"cleared_at": "2026-09-28T17:30:00+08:00"}
+    },
+    {
+      "event_id": "evt-inst-z2-003",
+      "event_type": "OCCUPANCY_WINDOW_CLOSED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z2",
+      "occurred_at": "2026-09-28T18:00:00+08:00",
+      "version": 3,
+      "zone_id": "Z2",
+      "summary": "综合训练馆看台撤场完成，地板孔位待对照基线复查",
+      "details": {"cleared_at": "2026-09-28T18:00:00+08:00"}
+    },
+    {
+      "event_id": "evt-inst-z1-003",
+      "event_type": "OCCUPANCY_WINDOW_CLOSED",
+      "aggregate_type": "temporary_installation",
+      "aggregate_id": "inst-z1",
+      "occurred_at": "2026-09-28T18:30:00+08:00",
+      "version": 3,
+      "zone_id": "Z1",
+      "summary": "主场草坪区舞台篷房撤场完成，草坪状态待对照基线复查",
+      "details": {"cleared_at": "2026-09-28T18:30:00+08:00"}
+    },
+    {
+      "event_id": "evt-case-z3-001",
+      "event_type": "INSPECTION_RECORDED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z3",
+      "occurred_at": "2026-09-29T09:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z3",
+      "summary": "南侧通道撤场后巡检：消防通道净宽恢复、坡道完好（当场照片）",
+      "details": {
+        "evidence": [
+          {"media_ref": "photo://Z3/2026-09-29/fire-egress-01.jpg", "record_type": "original", "taken_at": "2026-09-29T09:02:00+08:00", "captured_by": "巡检员-周岚", "note": "南侧主疏散通道净宽实测 6.1 米"},
+          {"media_ref": "photo://Z3/2026-09-29/ramp-01.jpg", "record_type": "original", "taken_at": "2026-09-29T09:09:00+08:00", "captured_by": "巡检员-周岚", "note": "无障碍坡道坡度复测 1:12，扶手无缺失"}
+        ]
+      }
+    },
+    {
+      "event_id": "evt-case-z3-002",
+      "event_type": "ASSET_DONATION_OFFERED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z3",
+      "occurred_at": "2026-09-29T10:00:00+08:00",
+      "version": 2,
+      "zone_id": "Z3",
+      "summary": "赞助商约定将赛事信息大屏留给场馆（捐赠要约，尚未接收）",
+      "details": {
+        "asset_id": "asset-screen-77",
+        "asset_name": "户外赛事信息 LED 大屏",
+        "donor_party": "启明体育品牌（赞助商）",
+        "ownership_status": "offered"
+      }
+    },
+    {
+      "event_id": "evt-case-z3-003",
+      "event_type": "ASSET_HANDOVER_SIGNED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z3",
+      "occurred_at": "2026-09-29T14:00:00+08:00",
+      "version": 3,
+      "zone_id": "Z3",
+      "summary": "信息大屏资产交接书由赞助商与场馆双方签署，设备清单及质保资料齐全",
+      "details": {
+        "asset_id": "asset-screen-77",
+        "signed_by": "场馆管理中心-高宁；启明体育品牌-林哲"
+      }
+    },
+    {
+      "event_id": "evt-case-z2-001",
+      "event_type": "INSPECTION_RECORDED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z2",
+      "occurred_at": "2026-09-29T10:30:00+08:00",
+      "version": 1,
+      "zone_id": "Z2",
+      "summary": "综合训练馆撤场后巡检：382 个锚固孔中 47 个未封孔，无障碍升降平台正常（当场照片）",
+      "details": {
+        "evidence": [
+          {"media_ref": "photo://Z2/2026-09-29/floor-holes-01.jpg", "record_type": "original", "taken_at": "2026-09-29T10:34:00+08:00", "captured_by": "巡检员-陈睦", "note": "未封孔 47 处，分布见点位图"},
+          {"media_ref": "photo://Z2/2026-09-29/lift-01.jpg", "record_type": "original", "taken_at": "2026-09-29T10:41:00+08:00", "captured_by": "巡检员-陈睦", "note": "无障碍升降平台试运行正常"}
+        ]
+      }
+    },
+    {
+      "event_id": "evt-case-z2-002",
+      "event_type": "DAMAGE_REPORTED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z2",
+      "occurred_at": "2026-09-29T11:00:00+08:00",
+      "version": 2,
+      "zone_id": "Z2",
+      "summary": "综合训练馆地板 47 处锚固孔未按基线封孔，定责赛事运营商",
+      "refs": ["evt-base-z2-001"],
+      "details": {
+        "damage_id": "dmg-z2-floor-01",
+        "aspect": "floor",
+        "severity": "major",
+        "responsible_party": "峰汇赛事运营有限公司"
+      }
+    },
+    {
+      "event_id": "evt-case-z2-003",
+      "event_type": "REPAIR_ORDER_OPENED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z2",
+      "occurred_at": "2026-09-30T09:00:00+08:00",
+      "version": 3,
+      "zone_id": "Z2",
+      "summary": "开具地板封孔修复工单，委托地板厂商施工",
+      "details": {
+        "damage_id": "dmg-z2-floor-01",
+        "repair_order_id": "ro-z2-001",
+        "contractor": "恒益运动地板工程队",
+        "cost_estimate": 18600
+      }
+    },
+    {
+      "event_id": "evt-case-z2-004",
+      "event_type": "COST_GUARANTEE_HELD",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z2",
+      "occurred_at": "2026-09-30T10:00:00+08:00",
+      "version": 4,
+      "zone_id": "Z2",
+      "summary": "就地板修复费用扣留运营商履约保函 25000 元",
+      "details": {
+        "damage_id": "dmg-z2-floor-01",
+        "guarantee_id": "grt-z2-001",
+        "amount": 25000,
+        "currency": "CNY",
+        "guarantee_status": "held"
+      }
+    },
+    {
+      "event_id": "evt-case-z2-005",
+      "event_type": "ZONE_REPAIRED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z2",
+      "occurred_at": "2026-10-02T16:00:00+08:00",
+      "version": 5,
+      "zone_id": "Z2",
+      "summary": "47 处锚固孔完成同材质封堵打磨，地板平整度复测合格",
+      "details": {
+        "repair_order_id": "ro-z2-001",
+        "repair_summary": "按基线 382 孔位标准封堵，缝隙 0.2mm 以内，平整高差 ≤1mm"
+      }
+    },
+    {
+      "event_id": "evt-case-z2-006",
+      "event_type": "REPAIR_ORDER_CLOSED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z2",
+      "occurred_at": "2026-10-02T17:00:00+08:00",
+      "version": 6,
+      "zone_id": "Z2",
+      "summary": "修复工单关闭，实际费用 18600 元",
+      "details": {"repair_order_id": "ro-z2-001", "amount": 18600, "currency": "CNY"}
+    },
+    {
+      "event_id": "evt-case-z2-007",
+      "event_type": "COST_GUARANTEE_SETTLED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z2",
+      "occurred_at": "2026-10-03T09:30:00+08:00",
+      "version": 7,
+      "zone_id": "Z2",
+      "summary": "保函赔付 18600 元，余款 6400 元释放",
+      "details": {
+        "guarantee_id": "grt-z2-001",
+        "amount": 18600,
+        "currency": "CNY",
+        "guarantee_status": "claimed"
+      }
+    },
+    {
+      "event_id": "evt-case-z1-001",
+      "event_type": "INSPECTION_RECORDED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-09-29T11:30:00+08:00",
+      "version": 1,
+      "zone_id": "Z1",
+      "summary": "主场草坪撤场后巡检：舞台区约 220㎡ 草坪板结、承载下降，北侧消防通道被余料占用（当场照片）",
+      "details": {
+        "evidence": [
+          {"media_ref": "photo://Z1/2026-09-29/turf-01.jpg", "record_type": "original", "taken_at": "2026-09-29T11:34:00+08:00", "captured_by": "巡检员-周岚", "note": "舞台基座区 220㎡ 板结，实测承载 0.21MPa，低于基线 0.35MPa"},
+          {"media_ref": "photo://Z1/2026-09-29/turf-map-01.jpg", "record_type": "original", "taken_at": "2026-09-29T11:40:00+08:00", "captured_by": "巡检员-周岚", "note": "受损范围 GPS 定位图"},
+          {"media_ref": "photo://Z1/2026-09-29/egress-01.jpg", "record_type": "original", "taken_at": "2026-09-29T11:46:00+08:00", "captured_by": "巡检员-周岚", "note": "北侧疏散通道堆放桁架余料，净宽余 2.3 米"}
+        ]
+      }
+    },
+    {
+      "event_id": "evt-case-z1-002",
+      "event_type": "DAMAGE_REPORTED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-09-29T13:00:00+08:00",
+      "version": 2,
+      "zone_id": "Z1",
+      "summary": "主场草坪 220㎡ 承载低于赛前基线，叠加消防通道占用，定责赛事运营商",
+      "refs": ["evt-base-z1-001"],
+      "details": {
+        "damage_id": "dmg-z1-turf-01",
+        "aspect": "turf",
+        "severity": "critical",
+        "responsible_party": "峰汇赛事运营有限公司"
+      }
+    },
+    {
+      "event_id": "evt-case-z1-003",
+      "event_type": "DAMAGE_DISPUTED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-09-29T16:00:00+08:00",
+      "version": 3,
+      "zone_id": "Z1",
+      "summary": "运营商提出争议：称板结区域在进场前已有斑秃，只认可承担一半修复费",
+      "details": {
+        "damage_id": "dmg-z1-turf-01",
+        "dispute_reason": "认为部分草坪损伤在赛前已存在，不认可全部 220㎡ 由赛事造成"
+      }
+    },
+    {
+      "event_id": "evt-case-z1-004",
+      "event_type": "ZONE_QUARANTINED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-09-29T16:30:00+08:00",
+      "version": 4,
+      "zone_id": "Z1",
+      "summary": "主场草坪区因损伤争议先行隔离，仅封闭 Z1，其他分区不受连带影响",
+      "details": {
+        "quarantine_reason": "草坪承载争议未裁定，存在开放安全风险",
+        "damage_id": "dmg-z1-turf-01"
+      }
+    },
+    {
+      "event_id": "evt-case-z1-005",
+      "event_type": "INSPECTION_RECORDED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-09-30T11:00:00+08:00",
+      "version": 5,
+      "zone_id": "Z1",
+      "summary": "运营商后补据称拍摄于进场前的草坪照片（标记为后补材料，不顶替当场证据）",
+      "details": {
+        "evidence": [
+          {"media_ref": "photo://Z1/2026-09-30/operator-late-01.jpg", "record_type": "supplementary", "taken_at": "2026-09-19T08:00:00+08:00", "captured_by": "峰汇赛事运营有限公司", "note": "事后提交的后补照片，声称拍摄于进场前；无采集封存链路，仅作争议参考"}
+        ]
+      }
+    },
+    {
+      "event_id": "evt-case-z1-006",
+      "event_type": "REPAIR_ORDER_OPENED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-10-01T09:00:00+08:00",
+      "version": 6,
+      "zone_id": "Z1",
+      "summary": "经比对基线定位图与后补材料，争议不影响板结实测，开具草坪修复工单先行修复",
+      "details": {
+        "damage_id": "dmg-z1-turf-01",
+        "repair_order_id": "ro-z1-001",
+        "contractor": "青坪园艺养护公司",
+        "cost_estimate": 96000
+      }
+    },
+    {
+      "event_id": "evt-case-z1-007",
+      "event_type": "COST_GUARANTEE_HELD",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-10-01T10:00:00+08:00",
+      "version": 7,
+      "zone_id": "Z1",
+      "summary": "就草坪修复及通道清理费用扣留运营商履约保函 120000 元",
+      "details": {
+        "damage_id": "dmg-z1-turf-01",
+        "guarantee_id": "grt-z1-001",
+        "amount": 120000,
+        "currency": "CNY",
+        "guarantee_status": "held"
+      }
+    },
+    {
+      "event_id": "evt-case-z1-008",
+      "event_type": "ZONE_REPAIRED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-10-04T17:00:00+08:00",
+      "version": 8,
+      "zone_id": "Z1",
+      "summary": "220㎡ 草坪完成打孔疏草、覆沙与补播，承载复测 0.36MPa；北侧消防通道余料清退净宽恢复 4 米",
+      "details": {
+        "repair_order_id": "ro-z1-001",
+        "repair_summary": "打孔疏草+覆沙+补播黑麦草，承载 0.36MPa 达到基线；通道余料全部清运并复核净宽"
+      }
+    },
+    {
+      "event_id": "evt-case-z1-009",
+      "event_type": "REPAIR_ORDER_CLOSED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-10-04T18:00:00+08:00",
+      "version": 9,
+      "zone_id": "Z1",
+      "summary": "草坪修复工单关闭，实际费用 94000 元",
+      "details": {"repair_order_id": "ro-z1-001", "amount": 94000, "currency": "CNY"}
+    },
+    {
+      "event_id": "evt-case-z1-010",
+      "event_type": "COST_GUARANTEE_SETTLED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z1",
+      "occurred_at": "2026-10-05T09:30:00+08:00",
+      "version": 10,
+      "zone_id": "Z1",
+      "summary": "结合争议复核结果，保函部分赔付 94000 元中的 76000 元，余款释放",
+      "details": {
+        "guarantee_id": "grt-z1-001",
+        "amount": 76000,
+        "currency": "CNY",
+        "guarantee_status": "partial_claim"
+      }
+    },
+    {
+      "event_id": "evt-case-z4-001",
+      "event_type": "INSPECTION_RECORDED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z4",
+      "occurred_at": "2026-09-29T15:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z4",
+      "summary": "器材存放区巡检：地坪完好，遗留赞助商互动装置一套（当场照片）",
+      "details": {
+        "evidence": [
+          {"media_ref": "photo://Z4/2026-09-29/storage-01.jpg", "record_type": "original", "taken_at": "2026-09-29T15:05:00+08:00", "captured_by": "巡检员-陈睦", "note": "互动装置一套仍在存放区，无交接清单"}
+        ]
+      }
+    },
+    {
+      "event_id": "evt-case-z4-002",
+      "event_type": "ASSET_DONATION_OFFERED",
+      "aggregate_type": "restoration_case",
+      "aggregate_id": "case-z4",
+      "occurred_at": "2026-09-29T15:30:00+08:00",
+      "version": 2,
+      "zone_id": "Z4",
+      "summary": "赞助商口头表示互动装置可留给场馆，但未提交清单、双方未签交接书",
+      "details": {
+        "asset_id": "asset-interactive-88",
+        "asset_name": "品牌互动打卡装置",
+        "donor_party": "浪潮饮料（赞助商）",
+        "ownership_status": "offered"
+      }
+    },
+    {
+      "event_id": "evt-decision-z3-001",
+      "event_type": "SAFETY_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z3",
+      "occurred_at": "2026-09-30T10:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z3",
+      "summary": "南侧通道安全验收签署：消防疏散条件恢复",
+      "details": {"sign_off_type": "safety", "signed_by": "场馆安全员-郑立"}
+    },
+    {
+      "event_id": "evt-decision-z3-002",
+      "event_type": "FUNCTION_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z3",
+      "occurred_at": "2026-09-30T10:15:00+08:00",
+      "version": 2,
+      "zone_id": "Z3",
+      "summary": "南侧通道功能验收签署：无障碍坡道及导视功能恢复",
+      "details": {"sign_off_type": "function", "signed_by": "场馆运营主管-高宁"}
+    },
+    {
+      "event_id": "evt-decision-z3-003",
+      "event_type": "ASSET_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z3",
+      "occurred_at": "2026-09-30T10:30:00+08:00",
+      "version": 3,
+      "zone_id": "Z3",
+      "summary": "南侧通道资产验收签署：信息大屏已完成交接，无遗留资产争议",
+      "details": {"sign_off_type": "asset", "signed_by": "场馆资产管理员-苏南"}
+    },
+    {
+      "event_id": "evt-decision-z3-004",
+      "event_type": "ZONE_REOPENED",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z3",
+      "occurred_at": "2026-09-30T11:00:00+08:00",
+      "version": 4,
+      "zone_id": "Z3",
+      "summary": "南侧通道分区重开：安全、功能、资产三类签署齐备",
+      "refs": ["evt-decision-z3-001", "evt-decision-z3-002", "evt-decision-z3-003"],
+      "details": {"reopen_from": "2026-10-01T08:00:00+08:00"}
+    },
+    {
+      "event_id": "evt-decision-z2-001",
+      "event_type": "SAFETY_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z2",
+      "occurred_at": "2026-10-03T10:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z2",
+      "summary": "综合训练馆安全验收签署：疏散条件正常",
+      "details": {"sign_off_type": "safety", "signed_by": "场馆安全员-郑立"}
+    },
+    {
+      "event_id": "evt-decision-z2-002",
+      "event_type": "FUNCTION_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z2",
+      "occurred_at": "2026-10-03T10:15:00+08:00",
+      "version": 2,
+      "zone_id": "Z2",
+      "summary": "综合训练馆功能验收签署：地板孔位恢复、无障碍设施正常",
+      "details": {"sign_off_type": "function", "signed_by": "场馆运营主管-高宁"}
+    },
+    {
+      "event_id": "evt-decision-z2-003",
+      "event_type": "ASSET_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z2",
+      "occurred_at": "2026-10-03T10:30:00+08:00",
+      "version": 3,
+      "zone_id": "Z2",
+      "summary": "综合训练馆资产验收签署：无遗留装置",
+      "details": {"sign_off_type": "asset", "signed_by": "场馆资产管理员-苏南"}
+    },
+    {
+      "event_id": "evt-decision-z2-004",
+      "event_type": "ZONE_REOPENED",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z2",
+      "occurred_at": "2026-10-03T11:00:00+08:00",
+      "version": 4,
+      "zone_id": "Z2",
+      "summary": "综合训练馆分区重开：三类签署齐备，10月4日8时起开放",
+      "refs": ["evt-decision-z2-001", "evt-decision-z2-002", "evt-decision-z2-003"],
+      "details": {"reopen_from": "2026-10-04T08:00:00+08:00"}
+    },
+    {
+      "event_id": "evt-decision-z2-005",
+      "event_type": "COURSE_REBOOKED",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z2",
+      "occurred_at": "2026-10-03T14:00:00+08:00",
+      "version": 5,
+      "zone_id": "Z2",
+      "summary": "已售社区舞蹈课从 Z2 原时段同步改签至 10月8日晚（依据已签署重开决定）",
+      "details": {
+        "course_id": "C-201",
+        "course_name": "社区晚间舞蹈课",
+        "rebook_from_decision": "evt-decision-z2-004",
+        "original_slot": {"zone_id": "Z2", "start": "2026-10-06T19:00:00+08:00", "end": "2026-10-06T20:30:00+08:00"},
+        "new_slot": {"zone_id": "Z2", "start": "2026-10-08T18:00:00+08:00", "end": "2026-10-08T20:00:00+08:00"}
+      }
+    },
+    {
+      "event_id": "evt-decision-z1-001",
+      "event_type": "SAFETY_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z1",
+      "occurred_at": "2026-10-05T10:00:00+08:00",
+      "version": 1,
+      "zone_id": "Z1",
+      "summary": "主场草坪区安全验收签署：消防通道净宽恢复、隔离解除",
+      "details": {"sign_off_type": "safety", "signed_by": "场馆安全员-郑立"}
+    },
+    {
+      "event_id": "evt-decision-z1-002",
+      "event_type": "FUNCTION_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z1",
+      "occurred_at": "2026-10-05T10:15:00+08:00",
+      "version": 2,
+      "zone_id": "Z1",
+      "summary": "主场草坪区功能验收签署：草坪承载复测达标、无障碍观赛位恢复",
+      "details": {"sign_off_type": "function", "signed_by": "场馆运营主管-高宁"}
+    },
+    {
+      "event_id": "evt-decision-z1-003",
+      "event_type": "ASSET_SIGN_OFF",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z1",
+      "occurred_at": "2026-10-05T10:30:00+08:00",
+      "version": 3,
+      "zone_id": "Z1",
+      "summary": "主场草坪区资产验收签署：无遗留装置",
+      "details": {"sign_off_type": "asset", "signed_by": "场馆资产管理员-苏南"}
+    },
+    {
+      "event_id": "evt-decision-z1-004",
+      "event_type": "ZONE_REOPENED",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z1",
+      "occurred_at": "2026-10-05T11:00:00+08:00",
+      "version": 4,
+      "zone_id": "Z1",
+      "summary": "主场草坪区重开：争议已隔离处理、修复完成、三类签署齐备，10月8日9时起开放",
+      "refs": ["evt-decision-z1-001", "evt-decision-z1-002", "evt-decision-z1-003"],
+      "details": {"reopen_from": "2026-10-08T09:00:00+08:00"}
+    },
+    {
+      "event_id": "evt-decision-z1-005",
+      "event_type": "COURSE_REBOOKED",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z1",
+      "occurred_at": "2026-10-05T14:00:00+08:00",
+      "version": 5,
+      "zone_id": "Z1",
+      "summary": "已售青少年足球课从 Z1 原时段改签至 10月8日10时（首次改签）",
+      "details": {
+        "course_id": "C-101",
+        "course_name": "青少年社区足球课",
+        "rebook_from_decision": "evt-decision-z1-004",
+        "original_slot": {"zone_id": "Z1", "start": "2026-10-06T09:00:00+08:00", "end": "2026-10-06T11:00:00+08:00"},
+        "new_slot": {"zone_id": "Z1", "start": "2026-10-08T10:00:00+08:00", "end": "2026-10-08T12:00:00+08:00"}
+      }
+    },
+    {
+      "event_id": "evt-decision-z1-006",
+      "event_type": "COURSE_REBOOKED",
+      "aggregate_type": "reopening_decision",
+      "aggregate_id": "decision-z1",
+      "occurred_at": "2026-10-05T15:00:00+08:00",
+      "version": 6,
+      "zone_id": "Z1",
+      "summary": "应养护方建议，足球课二次改签至 10月10日10时（覆盖首次改签，对外日历取最新）",
+      "details": {
+        "course_id": "C-101",
+        "course_name": "青少年社区足球课",
+        "rebook_from_decision": "evt-decision-z1-004",
+        "original_slot": {"zone_id": "Z1", "start": "2026-10-06T09:00:00+08:00", "end": "2026-10-06T11:00:00+08:00"},
+        "new_slot": {"zone_id": "Z1", "start": "2026-10-10T10:00:00+08:00", "end": "2026-10-10T12:00:00+08:00"}
+      }
+    }
+  ]
+}
