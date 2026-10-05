@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "赛后场馆恢复承诺领域事件",
-  "description": "用于跨模块交换事实记录的公共信封。",
+  "description": "跨模块交换事实记录的公共信封。事件由 event_id 唯一标识；同一 aggregate_id 的 version 从 1 连续递增；occurred_at 为带时区的真实发生时间。撤场完成不等于开放，分区须经安全、功能、资产三类签署后方可重开。",
   "type": "object",
   "required": [
     "event_id",
@@ -10,22 +10,40 @@
     "aggregate_id",
     "occurred_at",
     "version",
-    "summary"
+    "summary",
+    "payload"
   ],
   "properties": {
     "event_id": {
       "type": "string",
       "minLength": 8,
-      "description": "事件唯一标识"
+      "description": "事件唯一标识；来源系统重试必须沿用原标识"
     },
     "event_type": {
       "type": "string",
       "enum": [
         "BASELINE_FROZEN",
+        "OCCUPANCY_WINDOW_DECLARED",
+        "INSPECTION_OPENED",
+        "INSPECTION_COMPARED",
+        "INSPECTION_EVIDENCE_SUBMITTED",
         "INSTALLATION_ACCEPTED",
+        "ASSET_DISPOSITION_DECLARED",
+        "ASSET_TRANSFERRED",
+        "INSTALLATION_REMOVED",
         "DAMAGE_REPORTED",
+        "DAMAGE_DISPUTED",
+        "DAMAGE_RESOLVED",
+        "REPAIR_WORK_ORDER_ISSUED",
         "ZONE_REPAIRED",
-        "ZONE_REOPENED"
+        "COST_GUARANTEE_HELD",
+        "COST_GUARANTEE_SETTLED",
+        "ZONE_SAFETY_SIGNED",
+        "ZONE_FUNCTION_SIGNED",
+        "ZONE_ASSET_SIGNED",
+        "ZONE_QUARANTINED",
+        "ZONE_REOPENED",
+        "COURSE_RESCHEDULED"
       ],
       "description": "本领域事件类型"
     },
@@ -35,7 +53,8 @@
         "venue_baseline",
         "temporary_installation",
         "restoration_case",
-        "reopening_decision"
+        "reopening_decision",
+        "course_session"
       ],
       "description": "业务对象类型"
     },
@@ -47,18 +66,128 @@
     "occurred_at": {
       "type": "string",
       "format": "date-time",
-      "description": "事实发生时间"
+      "description": "事实发生时间（必须带时区）"
     },
     "version": {
       "type": "integer",
       "minimum": 1,
-      "description": "对象版本"
+      "description": "对象版本，同一聚合内从 1 连续递增"
     },
     "summary": {
       "type": "string",
       "minLength": 2,
       "description": "中文事实摘要"
+    },
+    "payload": {
+      "type": "object",
+      "description": "事件业务载荷；各事件类型的必填字段见 allOf 条件约束",
+      "additionalProperties": true
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "$defs": {
+    "zone_id": {"type": "string", "pattern": "^Z-[A-Z0-9]+$"},
+    "evidence_kind": {"type": "string", "enum": ["original", "supplementary"], "description": "original=冻结前拍摄的原始证据；supplementary=赛后后补证据，二者不得互相冒充"},
+    "disposition": {"type": "string", "enum": ["撤场清运", "拟捐赠"], "description": "资产归属：运营方所有并清运，或拟捐赠场馆（须经 ASSET_TRANSFERRED 才入账）"},
+    "resolution": {"type": "string", "enum": ["成立", "不成立"]},
+    "element_category": {
+      "type": "string",
+      "enum": ["草坪承载", "地板孔位", "消防通道", "结构承载", "无障碍设施", "面层外观", "设备设施", "资产装置"],
+      "description": "损伤类别：前四类卡安全签署，无障碍/面层/设备卡功能签署，资产装置卡资产签署"
+    },
+    "money": {"type": "number", "minimum": 0}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"event_type": {"const": "BASELINE_FROZEN"}}},
+      "then": {"properties": {"aggregate_type": {"const": "venue_baseline"}, "payload": {"required": ["venue_id", "recorded_by"]}}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "OCCUPANCY_WINDOW_DECLARED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "venue_baseline"}}, "payload": {"required": ["window_id", "zone_ids", "load_in_at", "load_out_at", "occupant"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "INSPECTION_OPENED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "venue_baseline"}}, "payload": {"required": ["inspection_id", "baseline_id", "zone_ids"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "INSPECTION_COMPARED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "venue_baseline"}}, "payload": {"required": ["inspection_id", "findings"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "INSPECTION_EVIDENCE_SUBMITTED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "venue_baseline"}}, "payload": {"required": ["evidence_id", "zone_id", "evidence_kind", "captured_at"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "INSTALLATION_ACCEPTED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "temporary_installation"}}, "payload": {"required": ["installation_id", "zone_ids", "permit_id", "approved_plan"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "ASSET_DISPOSITION_DECLARED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "temporary_installation"}}, "payload": {"required": ["installation_id", "asset_id", "disposition"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "ASSET_TRANSFERRED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "temporary_installation"}}, "payload": {"required": ["installation_id", "asset_id", "transfer_document_id", "accepted_by"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "INSTALLATION_REMOVED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "temporary_installation"}}, "payload": {"required": ["installation_id", "zone_ids"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "DAMAGE_REPORTED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "restoration_case"}}, "payload": {"required": ["damage_id", "zone_id", "element_category", "element", "reported_by", "evidence_ids", "baseline_id"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "DAMAGE_DISPUTED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "restoration_case"}}, "payload": {"required": ["damage_id", "disputed_by", "reason"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "DAMAGE_RESOLVED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "restoration_case"}}, "payload": {"required": ["damage_id", "resolution", "resolved_by"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "REPAIR_WORK_ORDER_ISSUED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "restoration_case"}}, "payload": {"required": ["work_order_id", "damage_id", "zone_id", "estimated_cost"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "ZONE_REPAIRED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "restoration_case"}}, "payload": {"required": ["zone_id", "work_order_ids", "evidence_ids"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "COST_GUARANTEE_HELD"}}},
+      "then": {"properties": {"aggregate_type": {"const": "restoration_case"}}, "payload": {"required": ["guarantee_id", "guarantor", "amount", "covers_damage_ids"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "COST_GUARANTEE_SETTLED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "restoration_case"}}, "payload": {"required": ["guarantee_id", "against_work_order_ids", "settled_amount"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "ZONE_SAFETY_SIGNED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "reopening_decision"}}, "payload": {"required": ["zone_id", "inspection_id", "signoff_id", "signer"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "ZONE_FUNCTION_SIGNED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "reopening_decision"}}, "payload": {"required": ["zone_id", "signoff_id", "signer"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "ZONE_ASSET_SIGNED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "reopening_decision"}}, "payload": {"required": ["zone_id", "signoff_id", "signer"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "ZONE_QUARANTINED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "reopening_decision"}}, "payload": {"required": ["zone_id", "reason"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "ZONE_REOPENED"}}},
+      "then": {"properties": {"aggregate_type": {"const": "reopening_decision"}}, "payload": {"required": ["zone_id", "decision_id", "signoff_ids"]}}
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "COURSE_RESCHEDULED"}}},
+      "then": {
+        "properties": {"aggregate_type": {"const": "course_session"}},
+        "payload": {"required": ["course_id", "session_id", "from_zone_id", "to_zone_id", "original_start", "new_start", "based_on_decision_ids", "notified_at"]}
+      }
+    }
+  ]
 }

@@ -5,5 +5,9 @@
   "aggregate_id": "venue-restoration-commitment-001",
   "occurred_at": "2026-09-20T12:00:00+08:00",
   "version": 1,
-  "summary": "登记赛后场馆恢复承诺的首条领域记录"
+  "summary": "登记赛后场馆恢复承诺的首条领域记录",
+  "payload": {
+    "venue_id": "V-demo-001",
+    "recorded_by": "场馆管理中心-示例经办人"
+  }
 }
